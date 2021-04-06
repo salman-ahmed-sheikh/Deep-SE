@@ -18,19 +18,19 @@ tokenizer_cmd = ['C:/Perl64/perl/bin/perl', 'tokenizer.perl', '-l', 'en', '-q', 
 
 def tokenize(sentences):
 
-    print 'Tokenizing..',
+    print ('Tokenizing..',)
     text = "\n".join(sentences)
     tokenizer = Popen(tokenizer_cmd, stdin=PIPE, stdout=PIPE)
     tok_text, _ = tokenizer.communicate(text)
     toks = tok_text.split('\n')[:-1]
-    print 'Done'
+    print ('Done')
 
     return toks
 
 def build_dict(sentences):
     sentences = tokenize(sentences)
 
-    print 'Building dictionary..'
+    print ('Building dictionary..')
     wordcount = dict()
     for ss in sentences:
         words = ss.strip().lower().split()
@@ -46,14 +46,14 @@ def build_dict(sentences):
     sorted_idx = numpy.argsort(counts)[::-1]
     counts = numpy.array(counts)
 
-    print 'dictionary:', len(keys), counts[sorted_idx[0]], counts[sorted_idx[1]]
+    print ('dictionary:', len(keys), counts[sorted_idx[0]], counts[sorted_idx[1]])
 
     worddict = dict()
 
     for idx, ss in enumerate(sorted_idx):
         worddict[keys[ss]] = idx+1  # leave 0 (UNK)
 
-    print numpy.sum(counts), ' total words ', sum(counts[sorted_idx[:1000]]), ' frequency of the 1000th frequent word'
+    print (numpy.sum(counts), ' total words ', sum(counts[sorted_idx[:1000]]), ' frequency of the 1000th frequent word')
 
     return worddict
 
@@ -99,8 +99,8 @@ def main():
         if ls[1] == '1': valid_ids.append(count)
         if ls[2] == '1': test_ids.append(count)
 
-    print 'nrare: ', n_rare
-    print 'ntrain, nvalid, ntest: ', len(train_ids), len(valid_ids), len(test_ids)
+    print ('nrare: ', n_rare)
+    print ('ntrain, nvalid, ntest: ', len(train_ids), len(valid_ids), len(test_ids))
 
     for i, label in enumerate(labels):
         if label in cdict:
@@ -112,7 +112,7 @@ def main():
 
     dictionary = build_dict(numpy.concatenate([train_title, train_description]))
 
-    print "after building dict..."
+    print ("after building dict...")
     train_t, train_d = grab_data(train_title, train_description, dictionary)
     valid_t, valid_d = grab_data(valid_title, valid_description, dictionary)
     test_t, test_d = grab_data(test_title, test_description, dictionary)

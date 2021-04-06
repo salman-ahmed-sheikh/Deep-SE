@@ -10,11 +10,11 @@ try:
     project = sys.argv[1]
     repo = sys.argv[2]
 except:
-    print 'No argument'
+    print ('No argument')
     project = 'mesos'
     repo = 'porru_dataset'
 
-print 'Project:' + project
+print ('Project:' + project)
 
 def clean_sen(sen):
     sen = ''.join([c if ord(c) < 128 and ord(c) > 32 else ' ' for c in sen])
@@ -29,7 +29,7 @@ if project != 'pretrain':
     cursor.execute(query)
     data = numpy.array(cursor.fetchall())
 
-    print 'No. of issue: ' + str(len(data))
+    print ('No. of issue: ' + str(len(data)))
     # clean data (remove special character)
     for i in range(len(data)):
         if data[i, 1] is None:
@@ -59,7 +59,7 @@ if project == 'pretrain':
     cursor.execute(query)
     data = numpy.array(cursor.fetchall())
 
-    print 'No. of issue: ' + str(len(data))
+    print ('No. of issue: ' + str(len(data)))
     # clean data (remove special character)
     for i in range(len(data)):
         if data[i, 1] is None:

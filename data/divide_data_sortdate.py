@@ -14,19 +14,19 @@ data_path = sys.argv[1] + '.csv'
 data = pandas.read_csv(data_path).values
 labels = data[:, 3].astype('int64')
 
-trainingSize = 60;
-validationSize = 20;
-testSize = 20;
+trainingSize = 60
+validationSize = 20
+testSize = 20
 
 if trainingSize + validationSize + testSize == 100:
-    numData = len(labels);
+    numData = len(labels)
     numTrain = (trainingSize * numData) / 100
     numValidation = (validationSize * numData) / 100
     numTest = (testSize * numData) / 100
 
-    print "Total data: %s" % numData
-    print "Training size: %s, validation size: %s, testing size: %s" % (numTrain, numValidation, numTest)
-    print "Total: %s" % (numTrain + numValidation + numTest)
+    print ("Total data: %s" % numData)
+    print ("Training size: %s, validation size: %s, testing size: %s" % (numTrain, numValidation, numTest))
+    print ("Total: %s" % (numTrain + numValidation + numTest))
 
     divided_set = numpy.zeros((len(labels), 3)).astype('int64')
 
@@ -41,4 +41,4 @@ if trainingSize + validationSize + testSize == 100:
 
     f.close()
 else:
-    print "check size"
+    print ("check size")

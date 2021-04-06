@@ -13,9 +13,9 @@ data_path = sys.argv[1] + '.csv'
 data = pandas.read_csv(data_path).values
 labels = data[:, 3].astype('int64')
 
-trainingSize = 60;
-validationSize = 20;
-testSize = 20;
+trainingSize = 60
+validationSize = 20
+testSize = 20
 
 if trainingSize + validationSize + testSize == 100:
     numData = int(len(labels))

@@ -32,9 +32,9 @@ for project, repo in datasetDict.items():
     os.system(cmd)
  
 time2=time.time()
-print()
+#print()
 print("Execution done on dicide_data_sortdate in: ",(time2-time1))
-print()
+#print()
 
 for dataPre in dataPres:
     print (project + ' ' + repo)
@@ -43,9 +43,9 @@ for dataPre in dataPres:
     os.system(cmd)
     
 time3=time.time()
-print()
+#print()
 print("Execution done on preprocess in: ",(time3-time2))
-print()
+#print()
 
 for project, repo in datasetDict.items():
     print (project + ' ' + repo)
@@ -54,6 +54,6 @@ for project, repo in datasetDict.items():
     os.system(cmd)
 
 time4=time.time()
-print()
+#print()
 print("Execution done on preprocess_storypoint in: ",(time4-time3))
-print()
+#print()
