@@ -10,7 +10,7 @@ from sklearn.cross_validation import cross_val_score, KFold, StratifiedKFold
 import load_raw_text
 
 def build_dict(sentences):
-    print 'Building dictionary..'
+    print ('Building dictionary..')
     wordcount = dict()
     for ss in sentences:
         words = ss.strip().lower().split()
@@ -26,14 +26,14 @@ def build_dict(sentences):
 
     sorted_idx = numpy.argsort(counts)[::-1]
 
-    print 'dictionary:', len(keys), counts[sorted_idx[0]], counts[sorted_idx[1]]
+    print ('dictionary:', len(keys), counts[sorted_idx[0]], counts[sorted_idx[1]])
 
     worddict = dict()
 
     for idx, ss in enumerate(sorted_idx):
         worddict[keys[ss]] = idx+1  # leave 0 for UNK
 
-    print numpy.sum(counts), ' total words ', len(keys), ' unique words'
+    print (numpy.sum(counts), ' total words ', len(keys), ' unique words')
 
     return worddict
 
@@ -49,7 +49,7 @@ def main():
     train, valid, test = load_raw_text.load(sys.argv[1])
     dictionary = build_dict(train)
 
-    print "after building dict..."
+    print ("after building dict...")
 
     train_x = grab_data(train, dictionary)
     valid_x = grab_data(valid, dictionary)

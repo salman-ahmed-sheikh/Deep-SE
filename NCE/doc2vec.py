@@ -19,13 +19,13 @@ max_len = arg['-len']
 
 vocab_size = arg['-vocab']
 
-# print emb_dim
-# print dataset
-# print saving
-# print max_len
-# print vocab_size
+# print (emb_dim)
+# print (dataset)
+# print (saving)
+# print (max_len)
+# print (vocab_size)
 
-print 'vocab: ', vocab_size
+print ('vocab: ', vocab_size)
 
 train, train_labels, valid, valid_labels, test, test_labels = load_data.load_lstm2v(dataset)
 
@@ -65,7 +65,7 @@ train_labels = numpy.array(train_labels)
 valid_labels = numpy.array(valid_labels)
 test_labels = numpy.array(test_labels)
 
-print saving
+print (saving)
 f = gzip.open('data/' + saving + '.pkl.gz', 'wb')
 cPickle.dump((train_feats, train_labels, valid_feats, valid_labels, test_feats, test_labels), f)
 f.close()

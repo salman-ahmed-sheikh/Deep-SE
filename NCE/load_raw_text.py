@@ -10,12 +10,12 @@ tokenizer_cmd = ['C:/Perl64/perl/bin/perl', 'tokenizer.perl', '-l', 'en', '-q', 
 
 def tokenize(sentences):
 
-    print 'Tokenizing..',
+    print ('Tokenizing..',)
     text = "\n".join(sentences)
     tokenizer = Popen(tokenizer_cmd, stdin=PIPE, stdout=PIPE)
     tok_text, _ = tokenizer.communicate(text)
     toks = tok_text.split('\n')[:-1]
-    print 'Done'
+    print ('Done')
 
     return toks
 

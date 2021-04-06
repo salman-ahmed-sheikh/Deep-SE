@@ -37,7 +37,7 @@ if mode == 'pretrain':
         command = flag + 'python lstm2vec_pretrain.py -data ' + dataPre + \
                   ' -saving lstm2v_' + dataPre + '_dim' + dim + \
                   ' -vocab ' + vocab + ' -dim ' + dim + ' -len ' + maxlen
-        print command
+        print (command)
         os.system(command)
 
 elif mode == 'lstm2vec':
@@ -52,7 +52,7 @@ elif mode == 'lstm2vec':
             command = flag + 'python lstm2vec.py -dataPre ' + repo + ' -data ' + project + \
                       ' -vocab ' + vocab + ' -dim ' + dim + ' -len ' + maxlen + \
                       ' -saving lstm2v_' + project + '_' + repo + '_dim' + dim
-            print command
+            print (command)
             os.system(command)
 else:
     for dim in dims:
@@ -60,5 +60,5 @@ else:
             command = 'python doc2vec.py -data ' + project + \
                       ' -saving doc2vec_' + project + '_' + repo + '_dim' + dim + \
                       ' -vocab ' + vocab + ' -dim ' + dim
-            print command
+            print (command)
             os.system(command)

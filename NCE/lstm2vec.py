@@ -20,7 +20,7 @@ max_len = arg['-len']
 
 vocab_size = arg['-vocab']
 
-print 'vocab: ', vocab_size
+print ('vocab: ', vocab_size)
 
 # save result to the filepath and wait if the result doesn't improve after 3 epochs, the lr will be divided by 2
 model_path = 'models/' + data_pretrain + '.json'

@@ -19,7 +19,7 @@ def shared_data(data_xy, borrow=True):
 def load(path):
     f = gzip.open(path, 'rb')
     train, valid, test = cPickle.load(f)
-    #print path, len(train[0]), len(valid[0])
+    #print (path, len(train[0]), len(valid[0]))
 
     return train, valid, test
 
