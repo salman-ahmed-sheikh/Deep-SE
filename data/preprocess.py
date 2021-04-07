@@ -3,10 +3,10 @@
 #
 
 chosen_frequency = 30
-import cPickle as pkl
+import _pickle as pkl
 import numpy
 import sys
-from sklearn.cross_validation import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold
 import gzip
 
 import load_raw_text
@@ -14,15 +14,15 @@ import load_raw_text
 from subprocess import Popen, PIPE
 
 # tokenizer.perl is from Moses: https://github.com/moses-smt/mosesdecoder/tree/master/scripts/tokenizer
-tokenizer_cmd = ['/usr/bin/perl', 'tokenizer.perl', '-l', 'en', '-q', '-']
+tokenizer_cmd = ['C:\\Perl64\\bin\\perl', 'tokenizer.perl', '-l', 'en', '-q', '-']
 
 def tokenize(sentences):
 
     print ('Tokenizing..',)
     text = "\n".join(sentences)
     tokenizer = Popen(tokenizer_cmd, stdin=PIPE, stdout=PIPE)
-    tok_text, _ = tokenizer.communicate(text)
-    toks = tok_text.split('\n')[:-1]
+    tok_text, _ = tokenizer.communicate(str.encode(text))
+    toks = tok_text.decode("utf-8") .split('\n')[:-1]
     print ('Done')
 
     return toks
@@ -40,8 +40,8 @@ def build_dict(sentences):
             else:
                 wordcount[w] += 1
 
-    counts = wordcount.values()
-    keys = wordcount.keys()
+    counts = list(wordcount.values())
+    keys = list(wordcount.keys())
 
     sorted_idx = numpy.argsort(counts)[::-1]
     counts = numpy.array(counts)

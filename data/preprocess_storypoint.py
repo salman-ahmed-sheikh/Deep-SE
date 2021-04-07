@@ -1,7 +1,7 @@
 
 import gzip
 import sys
-import cPickle
+import _pickle as cPickle
 import load_raw_text
 import preprocess
 

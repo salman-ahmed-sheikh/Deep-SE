@@ -1,8 +1,8 @@
 import numpy
-import theano
-from theano import config
-import theano.tensor as tensor
-import theano.tensor.shared_randomstreams as RS
+#import theano
+#from theano import config
+#import theano.tensor as tensor
+#import theano.tensor.shared_randomstreams as RS
 
 import keras
 from keras.layers import *

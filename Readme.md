@@ -1,5 +1,8 @@
 # Deep-SE
 
+
+Note: For pre-processing the data you need to install perl and update it's path in file preprocess.py file 
+
 ## quick instruction
 
 There are three folders:

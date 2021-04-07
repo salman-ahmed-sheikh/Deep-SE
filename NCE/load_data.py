@@ -1,7 +1,8 @@
-import cPickle
+import _pickle as cPickle
 import numpy
-import theano
-import theano.tensor as tensor
+#import theano
+#import theano.tensor as tensor
+import tensorflow as tf
 import gzip
 import scipy.io as sio
 
@@ -14,7 +15,7 @@ def shared_data(data_xy, borrow=True):
     shared_y = theano.shared(numpy.asarray(data_y,
                                            dtype=theano.config.floatX),
                              borrow=borrow)
-    return shared_x, tensor.cast(shared_y, 'int32')
+    return shared_x, tf.cast(shared_y, tf.int32)
 
 def load(path):
     f = gzip.open(path, 'rb')

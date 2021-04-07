@@ -1,27 +1,29 @@
-from keras.layers import *
-from keras.models import Model
-from keras.constraints import *
-from keras.regularizers import *
+from tensorflow.keras.layers import *
+from tensorflow.keras.models import Model
+from tensorflow.keras.constraints import *
+from tensorflow.keras.regularizers import *
 import gzip
+import sys
 import numpy
-import cPickle
+import _pickle as cPickle
 
 import load_data
 import noise_dist
 from NCE import *
 
-arg = load_data.arg_passing(sys.argv)
+#arg = load_data.arg_passing(sys.argv)
+arg = {"-data":"moodle","-dim": "10","-saving":"lstm2v_moodle_dim10","-vocab":"5000","-len":"200"}
 dataset = '../data/' + arg['-data'] + '_pretrain.pkl.gz'
 saving = arg['-saving']
-emb_dim = arg['-dim']
-max_len = arg['-len']
+emb_dim = int(arg['-dim'])
+max_len = int(arg['-len'])
 log = 'log/' + saving + '.txt'
 
 n_noise = 100
 print ('Loading data...')
 train, valid, test = load_data.load(dataset)
 valid = valid[-5000:]
-vocab_size = arg['-vocab']
+vocab_size = int(arg['-vocab'])
 
 print ('vocab: ', vocab_size)
 
@@ -53,7 +55,7 @@ emb_vec = Embedding(output_dim=emb_dim, input_dim=vocab_size, input_length=inp_l
                     #dropout=0.2,
                     mask_zero=True)(main_inp)
 
-GRU_context = LSTM(input_dim=emb_dim, output_dim=emb_dim,
+GRU_context = LSTM(50,input_dim=emb_dim, output_dim=emb_dim,
                    return_sequences=True)(emb_vec)
 #GRU_context = Dropout(0.5)(GRU_context)
 
